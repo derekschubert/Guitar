@@ -36,7 +36,7 @@ _Note: Project is in Early/Mid Development_
 
 
 ## Upcoming Features
-* Style
+* More Styling
   * select scale inputs
   * modals
   * tuning presets
@@ -53,6 +53,25 @@ _Note: Project is in Early/Mid Development_
 * Songs!
   * Share chords, tunings, etc
   * Easily organize & create song ideas (built for quick 2-8 bar phrases, not a full songwriter like Guitar Pro and the sorts!)
+
+
+## Required Files & vars for runtime not included in this pkg
+* ui/.env
+  * NODE_PATH=src/
+  * REACT_APP_API_URL={api hosting url: ie http://localhost:8080}
+* ui/src/auth_config.json
+  * domain: {something.auth0.com},
+  * clientId: {key given by auth0}
+* api/.env
+  * Server & Routing:
+    *PORT=8080
+    *GET_ALL_USERS={true or false - enables/disables access to the api's /users endpoint}
+    *GET_ALL_USERS_SECRET={any text}
+  * Google Cloud SQL
+    *USERNAME={cloudSQL db username}
+    *PASSWORD={cloudSQL db password}
+    *INSTANCE={cloudSQL db instance}
+
 
 <div align="center">
   <br /><br />
