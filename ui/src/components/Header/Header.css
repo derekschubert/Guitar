@@ -1,0 +1,59 @@
+.Header {
+  padding: 8px 24px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  background-color: rgba(0,0,0,.35);
+}
+
+.Header > * {
+  flex: 1 1 0px;
+  height: 100%;
+}
+
+.Header #logo {
+  color: #fff;
+  justify-self: flex-start;
+}
+.Header .title {
+  color: #fff;
+  text-align: center;
+}
+.Header .navigation ul {
+  display: flex;  
+  justify-content: flex-end;
+  align-items: center;
+}
+.Header .navigation ul li {
+  list-style: none;
+}
+.Header .navigation ul li a {
+  text-decoration: none;
+}
+.Header .NavLink button {
+  border: none;
+  background: none;
+  color: #fff;
+  -webkit-transition: color .3s ease-in-out;
+  -moz-transition: color .3s ease-in-out;
+  -o-transition: color .3s ease-in-out;
+  transition: color .3s ease-in-out;
+}
+.Header .NavLink button:hover {
+  cursor: pointer;
+  color: #27ceac;
+}
+.Header .NavLink button.active {
+  color: #27ceac;
+}
+.Header .NavLink button.focus { outline: none; }
+.Header .NavLink button svg {
+  font-size: 1.8em;
+}
+.Header #settings {
+  margin-left: 16px;
+}
+
+#SetScaleLi { margin-right: 12px; }
+.SetScale { color: #fff; }

@@ -1,0 +1,37 @@
+CREATE SCHEMA IF NOT EXISTS "mydb" DEFAULT CHARACTER SET utf8 ;
+USE "mydb" ;
+
+-- -----------------------------------------------------
+-- Table "mydb"."users"
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS "mydb"."users" (
+  "id" INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  "auth0ID" VARCHAR(255) NULL,
+  "publicID" VARCHAR(255) NULL,
+  "created_at" TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY ("id"),
+  UNIQUE INDEX "id_UNIQUE" ("id" ASC) VISIBLE)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table "mydb"."user_preferences"
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS "mydb"."user_preferences" (
+  "users_id" INT UNSIGNED NOT NULL,
+  "capo" INT NULL,
+  "strings" INT NULL,
+  "frets" INT NULL,
+  "useScale" TINYINT(1) NULL,
+  "showFretsBeforeCapo" TINYINT(1) NULL,
+  "selectedScale" VARCHAR(45) NULL,
+  "tuning" VARCHAR(255) NULL,
+  "scaleNotes" VARCHAR(255) NULL,
+  "last_updated" TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  INDEX "fk_user_preferences_users1_idx" ("users_id" ASC) VISIBLE,
+  PRIMARY KEY ("users_id"),
+  CONSTRAINT "fk_user_preferences_users1"
+    FOREIGN KEY ("users_id")
+    REFERENCES "mydb"."users" ("id")
+    ON DELETE CASCADE
+    ON UPDATE NO ACTION)

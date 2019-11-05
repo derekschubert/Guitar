@@ -1,0 +1,14 @@
+.Fretboard-container {
+  margin: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.Fretboard {
+  display: flex;
+  flex-direction: column-reverse;
+  overflow-x: auto;
+  padding-bottom: 24px;
+  padding-right: 56px;
+}

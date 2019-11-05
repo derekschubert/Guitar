@@ -1,0 +1,20 @@
+.String {
+  display: flex;
+  flex-wrap: no-wrap;
+  align-items: center;
+  position: relative;
+  width: fit-content;
+}
+.String .line {
+  background-color: #fff;
+  height: 2px;
+  left: 24px;
+  opacity: 0.37;
+  width: calc(100% - 24px);
+  position: absolute;
+  z-index: 0;
+}
+.String.position .line {
+  opacity: 0.15;
+  height: 1px;
+}

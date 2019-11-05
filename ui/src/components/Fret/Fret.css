@@ -1,0 +1,61 @@
+.Fret {
+  min-width: 32px;
+  max-width: 56px;
+  min-height: 32px;
+  max-height: 56px;
+  padding: 2px;
+  margin: 0 16px;
+  flex-grow: 1;
+  color: #fff;
+  font-size: 1.2em;
+  background-color: #333839;
+  z-index: 20;
+  text-align: center;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.Fret.standard {
+  transition: all .4s ease-in-out;
+  -webkit-box-shadow: 0px 4px 12px 0px rgba(0,0,0,.15);
+  -moz-box-shadow: 0px 4px 12px 0px rgba(0,0,0,.15);
+  box-shadow: 0px 4px 12px 0px rgba(0,0,0,.15);
+}
+
+.Fret.open {
+  min-width: 64px;
+  max-width: 148px;
+  font-size: 2em;
+}
+
+.Fret.muted {
+  color: #989898;
+}
+
+.Fret .sharp {
+  font-size: .5em;
+  position: absolute;
+}
+
+.Fret.standard.position, .Fret.open.regular:hover {
+  -webkit-box-shadow: none !important;
+  -moz-box-shadow: none !important;
+  box-shadow: none !important;
+}
+
+.Fret.open.position .note { font-size: .5em; }
+.Fret.standard.position .note { font-size: .7em; }
+
+.Fret.regular.find-scale:hover {
+  -webkit-box-shadow: 0px 4px 12px 0px rgba(39, 206, 173,.8);
+  -moz-box-shadow: 0px 4px 12px 0px rgba(39, 206, 173,.8);
+  box-shadow: 0px 4px 12px 0px rgba(39, 206, 173,.8);
+  cursor: pointer;
+}
+
+.Fret.regular.find-scale.selected {
+  color: rgb(39, 206, 173);
+}
