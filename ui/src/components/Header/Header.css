@@ -56,4 +56,32 @@
 }
 
 #SetScaleLi { margin-right: 12px; }
-.SetScale { color: #fff; }
+.SetScale { 
+  color: #fff; 
+  display: flex;
+  align-items: center;
+}
+.SetScale > input { margin-right: 8px; }
+.SetScale > input:hover { cursor: pointer; }
+.SetScale select {
+  background-color: rgba(255, 255, 255, .1);
+  color: #fff;
+  border-radius: 0;
+  border: 1px solid #bbb;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  padding: 4px 6px;
+  text-align: center;
+}
+.SetScale select:hover { cursor: pointer; }
+.SetScale select:last-child { border-left: none; padding: 4px 10px; }
+.SetScale select::-webkit-inner-spin-button {
+  display: none;
+}
+.SetScale *:focus {
+  outline: none;
+}
+.SetScale select::-ms-expand {
+  display: none;
+}

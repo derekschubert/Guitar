@@ -1,0 +1,37 @@
+.Checkbox {
+  display: inline;
+}
+.Checkbox span {
+  position: relative;
+}
+.Checkbox span::before {
+  content: '';
+  margin-right: 10px;
+  display: inline-block;
+  vertical-align: text-top;
+  width: 20px;
+  height: 20px;
+  background-color: rgba(255,255,255,.1);
+}
+.Checkbox:hover { cursor: pointer; }
+.Checkbox:hover span::before {
+  background-color: #27ceac;
+}
+.Checkbox span.checked::before { background-color: #27ceac; }
+.Checkbox span.checked::after {
+  content: '';
+  position: absolute;
+  left: 5px;
+  top: 9px;
+  background: white;
+  width: 2px;
+  height: 2px;
+  box-shadow: 
+    2px 0 0 white,
+    4px 0 0 white,
+    4px -2px 0 white,
+    4px -4px 0 white,
+    4px -6px 0 white,
+    4px -8px 0 white;
+  transform: rotate(45deg);
+}

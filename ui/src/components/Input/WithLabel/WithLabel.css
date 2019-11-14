@@ -1,0 +1,15 @@
+.WithLabel { display: flex; }
+.WithLabel.top { flex-direction: column; }
+.WithLabel.left { flex-direction: row; align-items: center; }
+.WithLabel.right { 
+  flex-direction: row-reverse; 
+  align-items: center; 
+  justify-content: flex-end;
+}
+.WithLabel.bottom { flex-direction: column-reverse; }
+.WithLabel label { font-size: 14px; }
+.WithLabel input {
+  width: 100%;
+  padding: 4px;
+  box-sizing: border-box;
+}

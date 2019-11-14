@@ -1,10 +1,13 @@
 .QuickSetting {
   display: flex;
   align-items: center;
-  margin-bottom: 16px;
+  margin-bottom: 32px;
 }
 .QuickSetting label {
   margin-right: 12px;
+}
+.QuickSetting > *:nth-child(2) {
+  margin-left: auto;
 }
 
 .TuningQuickSetting {
@@ -16,6 +19,8 @@
   border-radius: 0;
   background: 0;
   padding: 4px;
+  background-color: rgba(255,255,255,.1);
+  color: #fff;
 }
 .TuningQuickSetting > button:focus { outline: none; }
 .TuningQuickSetting > button:hover { cursor: pointer; }
@@ -60,7 +65,9 @@
   border: none;
   background: none;
   padding-top: 2px;
+  color: #fff;
 }
+.TuningQuickSetting .Option .toggle:hover { cursor: pointer; }
 .TuningQuickSetting .Option .toggle > svg {
   transition: transform .6s ease-in-out;
 }
@@ -78,7 +85,8 @@
 .TuningQuickSetting .controls > button {
   padding: 4px;
   border: none;
-  background: none;
+  background-color: rgba(255,255,255,.1);
+  color: #fff;
   text-align: center;
   width: 100%;
   max-width: 100%;
@@ -89,6 +97,10 @@
 .TuningQuickSetting .controls > button.btn-half:first-child { border-right-width: 1px; }
 .TuningQuickSetting .controls > button.btn-half {
   max-width: 50%;
+}
+.TuningQuickSetting .controls > button:hover {
+  background-color: #27ceac;
+  cursor: pointer;
 }
 .TuningQuickSetting .container { 
   overflow: hidden;
@@ -115,5 +127,22 @@
 .TuningQuickSetting .create-new.hide {
   margin-top: -180px;
 }
-.TuningQuickSetting .create-new > * { margin-bottom: 16px; }
+.TuningQuickSetting .create-new > * { margin-bottom: 8px; }
 .TuningQuickSetting .create-new > *:last-child { margin-bottom: 0px; }
+.TuningQuickSetting .create-new .tuning-name {
+  transition: all .4s ease-in-out;
+}
+.TuningQuickSetting .create-new .tuning-name.hide {
+  opacity: 0;
+  max-height: 0px;
+  margin-top: 140px;
+}
+.Modal .btn-link {
+  font-size: 14px;
+  color: #fff;
+  transition: color .3s ease-in-out;
+}
+.Modal .btn-link:hover {
+  color: #27ceac;
+  cursor: pointer;
+}

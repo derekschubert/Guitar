@@ -1,0 +1,18 @@
+# OS generated files #
+######################
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# UI files to ignore #
+node_modules/
+ui/node_modules
+ui/.env
+ui/src/auth_config.json
+
+# API files to ignore #
+api/.env

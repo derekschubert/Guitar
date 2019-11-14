@@ -1,0 +1,21 @@
+.TuningInput {
+  display: flex;
+  justify-content: space-evenly;
+  max-width: 140px;
+}
+.TuningInput .Tuning {
+  display: inline;
+  padding: 4px 2px 4px 3px;
+  text-align: center;
+  border: 1px solid #ccc;
+  border-left: none;
+  -webkit-appearance: none;
+  border-radius: 0;
+  background: none;
+  color: #fff;
+  margin: 0;
+  margin-left: -4px;
+  text-align: center;
+  text-align-last:center;
+}
+.TuningInput .Tuning:first-child { border-left: 1px solid #ccc; margin-left: 0; }

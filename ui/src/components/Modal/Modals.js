@@ -8,7 +8,7 @@ import { displayTuning, } from 'util/music';
 import { Link } from 'react-router-dom';
 import { IoIosArrowForward } from 'react-icons/io';
 import { 
-  WithLabel, NumberInput, StringInput, TuningInput,
+  WithLabel, NumberInput, StringInput, TuningInput, Checkbox,
 } from 'components/Input';
 
 /**
@@ -85,25 +85,30 @@ const TuningQuickSetting = ({ value, onChange }) => {
               >
                 <TuningInput />
               </WithLabel>
-              {saveCreateNew && <WithLabel name='create-new-tuning-name'
-                label='Name'
-                position='top'
-              >
-                <StringInput value={createName} 
-                  onChange={(e) => setCreateName(e.target.value)}
-                />
-              </WithLabel>}
               <WithLabel name='create-new-save'
                 label='Save tuning?'
                 position='right' passProps={false}
               >
-                <input type='checkbox' checked={saveCreateNew} 
+                <Checkbox checked={saveCreateNew} 
+                  onClick={() => setSaveCreateNew(!saveCreateNew)}
+                  style={{width: 'auto', marginRight: '12px'}}
+                />
+                {/* <input type='checkbox' checked={saveCreateNew} 
                   name='create-new-save' style={{width: 'auto', marginRight: '12px'}}
                   onChange={(e) => setSaveCreateNew(e.target.checked)} 
+                /> */}
+              </WithLabel>
+              <WithLabel name='create-new-tuning-name'
+                label='Name'
+                position='top' className={`tuning-name${saveCreateNew ? '' : ' hide'}`}
+              >
+                <StringInput value={createName} 
+                  onChange={(e) => setCreateName(e.target.value)}
                 />
               </WithLabel>
             </div>
             <div className='options'>
+              {/* TODO: pull from state/api */}
               <Option tuning={[4, 9, 2, 7, 11, 4]} name={'Standard'} />
               <Option tuning={[2, 9, 4, 9, 1, 4]} name={'A Passing Feeling'} />
             </div>
@@ -137,13 +142,13 @@ const SettingsModal = () => {
 
   return (
     <React.Fragment>
+      <QuickSetting name='tuning' label='Tuning'>
+        <TuningQuickSetting value={tuningText} onChange={(newTuning) => dispatch({type: 'setTuning', tuning: newTuning})} />
+      </QuickSetting>
       <QuickSetting name='capo' label='Capo'>
         <NumberInput value={capo} name='capo' 
           onChange={(e) => dispatch({type: 'setCapo', capo: e.target ? e.target.value : e})}
         />
-      </QuickSetting>
-      <QuickSetting name='tuning' label='Tuning'>
-        <TuningQuickSetting value={tuningText} onChange={(newTuning) => dispatch({type: 'setTuning', tuning: newTuning})} />
       </QuickSetting>
       <QuickSetting name='frets' label='Fret Count'>
         <NumberInput value={frets} name='frets' 

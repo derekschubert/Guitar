@@ -6,10 +6,12 @@ import ReducerCtx from 'contexts/reducer';
 import Modal, { SettingsModal } from 'components/Modal';
 import SubHeader from 'components/SubHeader';
 import ProfileNav from 'components/ProfileNav';
+import { Checkbox } from 'components/Input';
 
 // Icon
 import { IoIosSettings, IoIosSearch } from 'react-icons/io';
 
+// TODO: clean up & separate into multiple files
 /**
  * Header
  * 
@@ -69,8 +71,8 @@ export default (props) => {
         >
           {!openSetScale && !useScale && <span>None</span>}
           {openSetScale && (
-            <input type='checkbox' checked={useScale} 
-              onChange={(e) => dispatch({type: 'setUseScale', useScale: e.target.checked})}
+            <Checkbox checked={useScale} 
+              onClick={() => dispatch({type: 'setUseScale', useScale: !useScale})} 
             />
           )}
           {!openSetScale && useScale && <span>{notes[scaleNotes[0]].toUpperCase()}</span>}
