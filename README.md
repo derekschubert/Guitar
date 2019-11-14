@@ -36,10 +36,10 @@ _Note: Project is in Early/Mid Development_
 
 
 ## Upcoming Features
-* More Styling
-  * select scale inputs
-  * modals
-  * tuning presets
+* ~~More Styling~~ done
+  * ~~select scale inputs~~
+  * ~~modals~~
+  * ~~tuning presets~~
 * Chords Finder
   * discover new chords based on 2 or more notes!
   * variable 'reach' (how many frets your fingers can spread)
@@ -50,8 +50,8 @@ _Note: Project is in Early/Mid Development_
 * Profile page to see view your given data (& share presets w/ friends in the near-future)
 * Settings page for advanced settings & theme customization
 * Shareable presets & tunings
-* Songs!
-  * Share chords, tunings, etc
+* Chord Book
+  * Save chords into an arrangeable chord book
   * Easily organize & create song ideas (built for quick 2-8 bar phrases, not a full songwriter like Guitar Pro and the sorts!)
 
 
@@ -63,14 +63,12 @@ _Note: Project is in Early/Mid Development_
   * domain: {something.auth0.com},
   * clientId: {key given by auth0}
 * api/.env
-  * Server & Routing:
-    *PORT=8080
-    *GET_ALL_USERS={true or false - enables/disables access to the api's /users endpoint}
-    *GET_ALL_USERS_SECRET={any text}
-  * Google Cloud SQL
-    *USERNAME={cloudSQL db username}
-    *PASSWORD={cloudSQL db password}
-    *INSTANCE={cloudSQL db instance}
+  * PORT=8080
+  * GET_ALL_USERS={true or false - enables/disables access to the api's /users endpoint}
+  * GET_ALL_USERS_SECRET={any text}
+  * USERNAME={cloudSQL db username}
+  * PASSWORD={cloudSQL db password}
+  * INSTANCE={cloudSQL db instance}
 
 
 <div align="center">

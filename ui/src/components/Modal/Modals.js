@@ -93,10 +93,6 @@ const TuningQuickSetting = ({ value, onChange }) => {
                   onClick={() => setSaveCreateNew(!saveCreateNew)}
                   style={{width: 'auto', marginRight: '12px'}}
                 />
-                {/* <input type='checkbox' checked={saveCreateNew} 
-                  name='create-new-save' style={{width: 'auto', marginRight: '12px'}}
-                  onChange={(e) => setSaveCreateNew(e.target.checked)} 
-                /> */}
               </WithLabel>
               <WithLabel name='create-new-tuning-name'
                 label='Name'
