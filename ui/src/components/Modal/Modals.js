@@ -1,4 +1,4 @@
-import React, { useState, useContext, } from 'react';
+import React, { useContext, } from 'react';
 import './Modals.css';
 
 import { useAuth0 } from 'util/auth0';
@@ -6,10 +6,8 @@ import ReducerCtx from 'contexts/reducer';
 import { displayTuning, } from 'util/music';
 
 import { Link } from 'react-router-dom';
-import { IoIosArrowForward } from 'react-icons/io';
-import { 
-  WithLabel, NumberInput, StringInput, TuningInput, Checkbox,
-} from 'components/Input';
+import SetTuning from 'components/SetTuning';
+import { NumberInput } from 'components/Input';
 
 /**
  * Modals defines all modal subcomponents, in addition to
@@ -43,88 +41,6 @@ const QuickSetting = ({ label, children, name }) => {
  * Predefined Modal Contents
  */
 
-// Instantiated inside SettingsModal
-const TuningQuickSetting = ({ value, onChange }) => {
-  const [showDiv, setShowDiv] = useState(false);
-
-  const Option = ({ tuning, name }) => {
-    const [toggle, setToggle] = useState(true);
-    const tuningText = displayTuning(tuning);
-    return (
-      <div className='Option'>
-        <div className='outer'>
-          <div className={`inner ${toggle ? 'inner-active' : ''}`}
-            onClick={() => {onChange(tuning); setShowDiv(false);}}
-          >
-            <span className='tuning'>{tuningText}</span>
-            <span className='name'>{name}</span>
-          </div>
-        </div>
-        <button className={`toggle ${toggle ? '' : 'toggle-inactive'}`}
-          onClick={() => setToggle(!toggle)}
-        >
-          <IoIosArrowForward />
-        </button>
-      </div>
-    );
-  };
-
-  const [useCreateNew, setUseCreateNew] = useState(false);
-  const [createName, setCreateName] = useState("");
-  const [saveCreateNew, setSaveCreateNew] = useState(false);
-  return (
-    <div className='TuningQuickSetting'>
-      <button onClick={() => setShowDiv(!showDiv)}>{value}</button>
-      <div className={`select ${showDiv ? 'show' : ''}`}>
-        <div className={`container ${useCreateNew ? 'create' : ''}`}>
-          <div className='inner'>
-            <div className={`create-new ${useCreateNew ? '' : 'hide'}`}>
-              <WithLabel name='create-new-tuning'
-                label='Tuning'
-                position='top'
-              >
-                <TuningInput />
-              </WithLabel>
-              <WithLabel name='create-new-save'
-                label='Save tuning?'
-                position='right' passProps={false}
-              >
-                <Checkbox checked={saveCreateNew} 
-                  onClick={() => setSaveCreateNew(!saveCreateNew)}
-                  style={{width: 'auto', marginRight: '12px'}}
-                />
-              </WithLabel>
-              <WithLabel name='create-new-tuning-name'
-                label='Name'
-                position='top' className={`tuning-name${saveCreateNew ? '' : ' hide'}`}
-              >
-                <StringInput value={createName} 
-                  onChange={(e) => setCreateName(e.target.value)}
-                />
-              </WithLabel>
-            </div>
-            <div className='options'>
-              {/* TODO: pull from state/api */}
-              <Option tuning={[4, 9, 2, 7, 11, 4]} name={'Standard'} />
-              <Option tuning={[2, 9, 4, 9, 1, 4]} name={'A Passing Feeling'} />
-            </div>
-          </div>
-        </div>
-        <div className='controls'>
-          <button className={useCreateNew ? 'btn-half' : ''}
-            onClick={() => setUseCreateNew(!useCreateNew)}
-          >
-            {useCreateNew ? 'Cancel' : 'Create New'}
-          </button>
-          <button className='btn-half'>
-            {saveCreateNew ? 'Save' : 'Set'}
-          </button>
-        </div>
-      </div>
-    </div>
-  );
-};
-
 // Instantiated inside of components/Header
 const SettingsModal = () => {
   const {state, dispatch} = useContext(ReducerCtx);
@@ -139,7 +55,7 @@ const SettingsModal = () => {
   return (
     <React.Fragment>
       <QuickSetting name='tuning' label='Tuning'>
-        <TuningQuickSetting value={tuningText} onChange={(newTuning) => dispatch({type: 'setTuning', tuning: newTuning})} />
+        <SetTuning value={tuningText} onChange={(newTuning) => dispatch({type: 'setTuning', tuning: newTuning})} />
       </QuickSetting>
       <QuickSetting name='capo' label='Capo'>
         <NumberInput value={capo} name='capo' 
@@ -151,7 +67,7 @@ const SettingsModal = () => {
           onChange={(e) => dispatch({type: 'setFrets', frets: e.target ? e.target.value : e})}
         />
       </QuickSetting>
-      <button className='btn-link'>View all settings</button>
+      <Link to='/settings' className='link'>View all settings</Link>
     </React.Fragment>
   );
 };

@@ -10,6 +10,9 @@ const initialState = {
   tuning: [2, 9, 4, 9, 1, 4],
   strings: 6,
   showFretsBeforeCapo: false,
+  showFretCountAbove: true,
+  showFretCountBelow: true,
+  startFretCountAtCapo: true,
   findScale: false,
   selectedNotes: [],
   scaleNotes: [0, 2, 4, 5, 7, 9, 11],
@@ -26,6 +29,14 @@ const reducer = (state, action) => {
     setStrings: () => ({...state, strings: action.strings}),
 
     setFrets: () => setFrets(state, action.frets),
+
+    setShowFretsBeforeCapo: () => ({...state, showFretsBeforeCapo: action.value}),
+
+    setShowFretCountAbove: () => ({...state, showFretCountAbove: action.value}),
+
+    setShowFretCountBelow: () => ({...state, showFretCountBelow: action.value}),
+
+    setStartFretCountAtCapo: () => ({...state, startFretCountAtCapo: action.value}),
 
     setFindScale: () => setFindScale(state, action.findScale),
 

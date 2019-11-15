@@ -7,6 +7,7 @@ import Modal, { SettingsModal } from 'components/Modal';
 import SubHeader from 'components/SubHeader';
 import ProfileNav from 'components/ProfileNav';
 import { Checkbox } from 'components/Input';
+import { Link } from 'react-router-dom';
 
 // Icon
 import { IoIosSettings, IoIosSearch } from 'react-icons/io';
@@ -112,7 +113,7 @@ export default (props) => {
   return (
     <React.Fragment>
       <header className='Header'>
-        <h1 id='logo'>Guitar</h1>
+        <Link to='/'><h1 id='logo'>Guitar</h1></Link>
         <div className='title'>{title}</div>
         <div className='navigation'>
           <nav>

@@ -71,6 +71,11 @@ _Note: Project is in Early/Mid Development_
   * INSTANCE={cloudSQL db instance}
 
 
+## Starting up 
+1. Run in api folder: ```./cloud_sql_proxy -instances="[YOUR_INSTANCE_CONNECTION_NAME]"=tcp:3306```
+2. Run in api folder: ```go run main.go```
+3. Run in ui folder: ```yarn start```
+
 <div align="center">
   <br /><br />
   <h1>Thanks for checking out the project!</h1>

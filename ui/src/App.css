@@ -17,8 +17,28 @@
   font-family: 'Esteban',Georgia,"Times New Roman",serif;
 }
 
-.btn-link {
-  border: none;
-  background: none;
+hr {
+  margin-top: 16px;
+  margin-bottom: 16px;
+  border-color: rgba(255,255,255,.1);
 }
-.btn-link:focus { outline: none; }
+
+.block {
+  display: block;
+}
+
+.link {
+  font-size: 14px;
+  color: #fff;
+  transition: color .3s ease-in-out;
+  text-decoration: none;
+  margin-top: 8px;
+  margin-bottom: 8px;
+}
+.link:hover {
+  color: #27ceac;
+  cursor: pointer;
+}
+.link.active {
+  color: rgba(255,255,255,.5)
+}

@@ -7,13 +7,14 @@ import './NumberInput.css';
  * Props:
  * - value: int*      (value of the input, required)
  * - onChange: func*  (function to change value, required)
+ * - style
  */
-const NumberInput = ({ value, onChange }) => {
+const NumberInput = ({ value, onChange, style }) => {
   if (value === null) return console.error('NumberInput requires the value prop!');
   if (onChange === null) return console.error('NumberInput requires the onChange prop!');
 
   return (
-    <div className='NumberInput'>
+    <div className='NumberInput' style={style}>
       <button onClick={() => onChange(-1)}>-</button>
       <input type='number' value={value}
         onChange={(e) => onChange(e)}

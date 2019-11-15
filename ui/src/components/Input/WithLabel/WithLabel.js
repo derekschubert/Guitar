@@ -26,7 +26,7 @@ const WithLabel = (props) => {
   if (!name) return console.error('WithLabel must have a defined name prop!');
   
   return (
-    <div className={`WithLabel ${position}`} className={className}>
+    <div className={`WithLabel ${position} ${className}`}>
       <label name={name}>{label}</label>
       {!passProps && children}
       {passProps && React.Children.map(children, child => React.cloneElement(child, {

@@ -1,0 +1,26 @@
+.Select select {
+  background-color: rgba(255, 255, 255, .1);
+  color: #fff;
+  border-radius: 0;
+  border: none;
+  border-bottom: 1px solid #bbb;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  padding: 6px 24px;
+  transition: all .3s ease-in-out;
+  text-align: center;
+}
+.Select select:hover { 
+  cursor: pointer; 
+  background-color: #27ceac;
+}
+.Select select::-webkit-inner-spin-button {
+  display: none;
+}
+.Select select:focus {
+  outline: none;
+}
+.Select select::-ms-expand {
+  display: none;
+}

@@ -12,14 +12,16 @@ export default () => {
   const {state} = useContext(ReducerCtx);
   const {
     tuning,
+    showFretCountAbove,
+    showFretCountBelow,
   } = state;
 
   return (
     <div className='Fretboard-container'>
       <div className='Fretboard'>
-        <String openNote={0} mode='position' />
+        {showFretCountBelow && <String openNote={0} mode='position' />}
         {tuning.map((k, i) => <String key={i} openNote={k} />)}
-        <String openNote={0} mode='position' />
+        {showFretCountAbove && <String openNote={0} mode='position' />}
       </div>
     </div>
   );
