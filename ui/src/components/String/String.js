@@ -17,7 +17,7 @@ export default (props) => {
     frets,
     capo,
     showFretsBeforeCapo,
-    startFretCountAtCapo
+    startFretCountAtCapo,
   } = state;
 
   const {
@@ -37,12 +37,12 @@ export default (props) => {
     if (mode === 'note') fretNotes.push((i + openNote) % 12);
     else if (mode === 'position') fretNotes.push(i - (startFretCountAtCapo ? capo : 0));
   }
-  
+
   return (
     <div className={`String ${mode === 'position' ? 'position' : ''}`}>
       <div className='line'></div>
       {fretNotes.map((k, i) => (
-        <Fret key={i} note={k} 
+        <Fret key={i} note={k} forceMute={showFretsBeforeCapo && i < capo}
           open={i === (showFretsBeforeCapo ? capo : 0)}
           mode={mode}
         />

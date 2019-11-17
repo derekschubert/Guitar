@@ -9,7 +9,7 @@ const initialState = {
   frets: 12,
   tuning: [2, 9, 4, 9, 1, 4],
   strings: 6,
-  showFretsBeforeCapo: false,
+  showFretsBeforeCapo: true,
   showFretCountAbove: true,
   showFretCountBelow: true,
   startFretCountAtCapo: true,

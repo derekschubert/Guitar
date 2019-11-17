@@ -10,6 +10,7 @@ import { notes } from 'util/music';
  * - open: bool = false         (if note is the string's open note)
  * - isSelected: bool = false   (whether note was selected by user)
  * - mode: string = 'note'      (passed down from String component, whether to display music note or position)
+ * - forceMute: bool = false    (mutes fret and hides note)
  */
 export default (props) => {
   const { state, dispatch } = useContext(ReducerCtx);
@@ -23,11 +24,12 @@ export default (props) => {
   const {
     note,
     open = false, 
-    mode = 'note'
+    mode = 'note',
+    forceMute = false,
   } = props;
 
   if (note === null) console.error('Fret component requires a Note prop!');
-  
+
   let fretClass = 'Fret';
   fretClass += open ? ' open' : ' standard';
   fretClass += mode === 'position' ? ' position' : ' regular';
@@ -35,7 +37,7 @@ export default (props) => {
   fretClass += (findScale && selectedNotes.includes(note)) ? ' selected': '';
   
   let muted = false;
-  if (mode !== 'position' && !findScale && useScale && !scaleNotes.includes(note)) {
+  if ((mode !== 'position' && !findScale && useScale && !scaleNotes.includes(note)) || forceMute) {
     muted = true;
     fretClass += ' muted';
   }
