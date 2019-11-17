@@ -3,10 +3,6 @@ import React, { useState, useEffect, useContext } from "react";
 import createAuth0Client from "@auth0/auth0-spa-js";
 
 const DEFAULT_REDIRECT_CALLBACK = (appState) => {
-  console.log("HOLY SHIT I HIT!");
-  console.log(appState)
-  console.log(window.history)
-  console.log(window.location)
   window.history.replaceState({}, document.title, window.location.pathname);
 }
 
