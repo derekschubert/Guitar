@@ -88,9 +88,9 @@ func newMySQLDB(config MySQLConfig) (UserDatabase, error) {
 	if db.getUser, err = conn.Prepare(getUserStmt); err != nil {
 		return nil, fmt.Errorf("mysql: prepare getUser: %v", err)
 	}
-	// if db.updateUser, err = conn.Prepare(updateUserPreferencesStmt); err != nil {
-	// 	return nil, fmt.Errorf("mysql: prepare updateUser: %v", err)
-	// }
+	if db.updateUser, err = conn.Prepare(updateUserPreferencesStmt); err != nil {
+		return nil, fmt.Errorf("mysql: prepare updateUser: %v", err)
+	}
 	if db.createUser, err = conn.Prepare(createUserStmt); err != nil {
 		return nil, fmt.Errorf("mysql: prepare createUser: %v", err)
 	}

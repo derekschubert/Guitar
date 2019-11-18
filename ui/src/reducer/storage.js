@@ -34,11 +34,11 @@ const _prepStateForServer = state => {
   return {
     capo: state.capo,
     frets: state.frets,
-    scaleNotes: `${state.scaleNotes}`,
+    scaleNotes: `[${state.scaleNotes}]`,
     selectedScale: state.selectedScale,
     showFretsBeforeCapo: state.showFretsBeforeCapo,
     strings: state.strings,
-    tuning: `${state.tuning}`,
+    tuning: `[${state.tuning}]`,
     useScale: state.useScale,
   };
 };
@@ -70,6 +70,7 @@ const loadState = async userId => {
       // TODO: add last_updated fields into local & db,
       // if local was more recently updated, ask if they'd like to push
       // localData to server or overwrite local data from cloud
+
       if ((localData && localData.publicID === serverData.publicID)
         || (localData && !localData.publicID) 
       ) return {

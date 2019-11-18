@@ -5,6 +5,7 @@ import (
 	"database/sql"
 	"fmt"
 	"io"
+	"time"
 
 	"github.com/derekschubert/guitar/api/util"
 
@@ -139,24 +140,35 @@ func (db *mysqlDB) GetUser(auth0ID string) (*models.UserPreferences, bool, error
 		return nil, false, fmt.Errorf("mysql: could not get user: %v", err)
 	}
 
-	fmt.Println("Got user preferences!")
-	fmt.Println(prefs)
-
 	// zero out ID for returning JSON
 	prefs.ID = 0
 	return prefs, false, nil
 }
 
 // UPDATE USER PREFERENCES
-
-const updateUserPreferencesStmt = ``
+// UPDATE table SET cols WHERE condition
+const updateUserPreferencesStmt = `UPDATE user_preferences AS p
+	INNER JOIN users AS u
+	ON u.id = p.user_id
+	SET p.capo=?, p.strings=?, p.frets=?, p.useScale=?, p.showFretsBeforeCapo=?, 
+			p.selectedScale=?, p.tuning=?, p.scaleNotes=?, p.last_updated=?
+	WHERE u.auth0ID = ?`
 
 func (db *mysqlDB) UpdateUser(auth0ID string, prefs *models.UserPreferences) error {
-	fmt.Println(prefs)
-	xp := util.ConvertStructToSlice(prefs)
-	fmt.Println(xp)
+	fmt.Println("INSIDE USERS.GO: UPDATE USER!")
+	if auth0ID == "" {
+		return fmt.Errorf("mysql: passed empty auth0ID into %v", "UpdateUser")
+	}
+	xp := util.ConvertStructToSlice(*prefs)
+	xp = xp[1:]                // remove ID
+	xp[len(xp)-1] = time.Now() // new last_updated time
+	xp = append(xp, auth0ID)
 
-	return nil
+	fmt.Println("Users.go: UPDATE USER --")
+	fmt.Println(xp)
+	_, err := execAffectingOneRow(db.updateUser, xp...)
+	fmt.Println("-- END UPDATE USER --")
+	return err
 }
 
 // CREATE NEW USER & USER PREFERENCES
