@@ -9,11 +9,13 @@ const Loading = () => {
   const { loading } = useAuth0();
   const {state} = useContext(ReducerCtx);
 
+  /* eslint-disable jsx-a11y/heading-has-content */
   return (
     <div className={`Loading ${(loading || !state.loaded) ? 'loading' : 'finished'}`}>
-      <h1></h1>
+      <h1 aria-label='loading'></h1>
     </div>
   );
+  /* eslint-enable jsx-a11y/heading-has-content */
 }
 
 export default Loading;

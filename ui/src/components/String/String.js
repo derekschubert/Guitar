@@ -35,7 +35,10 @@ export default (props) => {
   let fretNotes = [];
   for (let i = showFretsBeforeCapo ? 0 : capo; i <= frets; i++) {
     if (mode === 'note') fretNotes.push((i + openNote) % 12);
-    else if (mode === 'position') fretNotes.push(i);
+    else if (mode === 'position') {
+      if (startFretCountAtCapo) fretNotes.push(i - capo < 0 ? 'x' : i - capo);
+      else fretNotes.push(i);
+    }
   }
 
   return (

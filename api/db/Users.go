@@ -57,33 +57,39 @@ func scanUser(u rowScanner) (*models.User, error) {
 
 func scanUserPreferences(u rowScanner) (*models.UserPreferences, error) {
 	var (
-		id                  int64
-		capo                sql.NullInt32
-		strings             sql.NullInt32
-		frets               sql.NullInt32
-		useScale            sql.NullBool
-		showFretsBeforeCapo sql.NullBool
-		selectedScale       sql.NullString
-		tuning              sql.NullString
-		scaleNotes          sql.NullString
-		lastUpdated         sql.NullTime
+		id                   int64
+		capo                 sql.NullInt32
+		strings              sql.NullInt32
+		frets                sql.NullInt32
+		useScale             sql.NullBool
+		showFretsBeforeCapo  sql.NullBool
+		showFretCountAbove   sql.NullBool
+		showFretCountBelow   sql.NullBool
+		startFretCountAtCapo sql.NullBool
+		selectedScale        sql.NullString
+		tuning               sql.NullString
+		scaleNotes           sql.NullString
+		lastUpdated          sql.NullTime
 	)
 
-	if err := u.Scan(&id, &capo, &strings, &frets, &useScale, &showFretsBeforeCapo, &selectedScale, &tuning, &scaleNotes, &lastUpdated); err != nil {
+	if err := u.Scan(&id, &capo, &strings, &frets, &useScale, &showFretsBeforeCapo, &showFretCountAbove, &showFretCountBelow, &startFretCountAtCapo, &selectedScale, &tuning, &scaleNotes, &lastUpdated); err != nil {
 		return nil, err
 	}
 
 	prefs := &models.UserPreferences{
-		ID:                  id,
-		Capo:                capo.Int32,
-		Strings:             strings.Int32,
-		Frets:               frets.Int32,
-		UseScale:            useScale.Bool,
-		ShowFretsBeforeCapo: showFretsBeforeCapo.Bool,
-		SelectedScale:       selectedScale.String,
-		Tuning:              tuning.String,
-		ScaleNotes:          scaleNotes.String,
-		LastUpdated:         lastUpdated.Time,
+		ID:                   id,
+		Capo:                 capo.Int32,
+		Strings:              strings.Int32,
+		Frets:                frets.Int32,
+		UseScale:             useScale.Bool,
+		ShowFretsBeforeCapo:  showFretsBeforeCapo.Bool,
+		ShowFretCountAbove:   showFretCountAbove.Bool,
+		ShowFretCountBelow:   showFretCountBelow.Bool,
+		StartFretCountAtCapo: startFretCountAtCapo.Bool,
+		SelectedScale:        selectedScale.String,
+		Tuning:               tuning.String,
+		ScaleNotes:           scaleNotes.String,
+		LastUpdated:          lastUpdated.Time,
 	}
 
 	return prefs, nil
@@ -112,7 +118,8 @@ func (db *mysqlDB) GetUsers() ([]*models.User, error) {
 }
 
 // GET USER's PREFERENCES (and create user & prefs if doesn't yet exist) using their auth0ID
-const getUserStmt = `SELECT user_id, capo, strings, frets, useScale, showFretsBeforeCapo, selectedScale, tuning, scaleNotes, last_updated
+const getUserStmt = `SELECT user_id, capo, strings, frets, useScale, showFretsBeforeCapo, 
+	showFretCountAbove, showFretCountBelow, startFretCountAtCapo, selectedScale, tuning, scaleNotes, last_updated
 	FROM user_preferences AS up
 	INNER JOIN users AS u ON u.id = up.user_id
 	WHERE u.auth0ID = ?`
@@ -150,7 +157,8 @@ func (db *mysqlDB) GetUser(auth0ID string) (*models.UserPreferences, bool, error
 const updateUserPreferencesStmt = `UPDATE user_preferences AS p
 	INNER JOIN users AS u
 	ON u.id = p.user_id
-	SET p.capo=?, p.strings=?, p.frets=?, p.useScale=?, p.showFretsBeforeCapo=?, 
+	SET p.capo=?, p.strings=?, p.frets=?, p.useScale=?, p.showFretsBeforeCapo=?,
+			p.showFretCountAbove=?, p.showFretCountBelow=?, p.startFretCountAtCapo=?,
 			p.selectedScale=?, p.tuning=?, p.scaleNotes=?, p.last_updated=?
 	WHERE u.auth0ID = ?`
 
@@ -174,8 +182,8 @@ func (db *mysqlDB) UpdateUser(auth0ID string, prefs *models.UserPreferences) err
 // CREATE NEW USER & USER PREFERENCES
 const createUserStmt = `INSERT INTO users (auth0ID, publicID) values (?, ?)`
 const createUserPreferencesStmt = `INSERT INTO user_preferences 
-	(user_id, capo, strings, frets, useScale, showFretsBeforeCapo, selectedScale, tuning, scaleNotes, last_updated) 
-	values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`
+	(user_id, capo, strings, frets, useScale, showFretsBeforeCapo, showFretCountAbove, showFretCountBelow, startFretCountAtCapo, selectedScale, tuning, scaleNotes, last_updated) 
+	values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`
 
 func (db *mysqlDB) CreateUser(auth0ID string, publicID string) (*models.UserPreferences, error) {
 	row, err := execAffectingOneRow(db.createUser, auth0ID, publicID)

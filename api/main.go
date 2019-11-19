@@ -180,7 +180,7 @@ func getUser(w http.ResponseWriter, r *http.Request) *appError {
 	if isNew {
 		w.WriteHeader(http.StatusCreated)
 	}
-
+	fmt.Println("Got User:", user)
 	json.NewEncoder(w).Encode(user)
 
 	return nil
@@ -202,14 +202,12 @@ func updateUser(w http.ResponseWriter, r *http.Request) *appError {
 	json.Unmarshal(rb, &prefs)
 
 	fmt.Println("got user prefs:", prefs)
-	fmt.Println("------ got here 1")
 
 	err = db.Database.UpdateUser(auth0ID, &prefs)
 	if err != nil {
 		fmt.Printf("Main.go:updateUser error in db update user: %v", err)
 	}
 
-	fmt.Println("------ got here 2")
 	fmt.Println("LEAVING UPDATE USER")
 	return nil
 }

@@ -11,7 +11,9 @@
   flex: 1 1 0px;
   height: 100%;
 }
-
+.Header > a {
+  text-decoration: none;
+}
 .Header #logo {
   color: #fff;
   justify-self: flex-start;

@@ -37,6 +37,9 @@ const _prepStateForServer = state => {
     scaleNotes: `[${state.scaleNotes}]`,
     selectedScale: state.selectedScale,
     showFretsBeforeCapo: state.showFretsBeforeCapo,
+    showFretCountAbove: state.showFretCountAbove,
+    showFretCountBelow: state.showFretCountBelow,
+    startFretCountAtCapo: state.startFretCountAtCapo,
     strings: state.strings,
     tuning: `[${state.tuning}]`,
     useScale: state.useScale,
@@ -126,6 +129,7 @@ const _getAllFromServer = userId => {
 };
 
 const _parseUserPreferences = data => {
+  console.log("Parse user prefs, data:", data);
   return {
     capo: data.capo,
     frets: data.frets,
@@ -133,6 +137,9 @@ const _parseUserPreferences = data => {
     scaleNotes: JSON.parse(data.scaleNotes),
     selectedScale: data.selectedScale,
     showFretsBeforeCapo: data.showFretsBeforeCapo,
+    showFretCountAbove: data.showFretCountAbove,
+    showFretCountBelow: data.showFretCountBelow,
+    startFretCountAtCapo: data.startFretCountAtCapo,
     strings: data.strings,
     tuning: JSON.parse(data.tuning),
     useScale: data.useScale,

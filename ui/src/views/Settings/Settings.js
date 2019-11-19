@@ -83,7 +83,7 @@ const Settings = () => {
           </WithLabel>
 
           <Title>Fretboard</Title>
-          <WithLabel label='Show strings before capo' name='show-strings-before-capo'>
+          <WithLabel label='Show frets before capo' name='show-frets-before-capo'>
             <Select value={showFretsBeforeCapo} style={marginLeft}
               options={[[true, 'Yes'], [false, 'No']]}
               onChange={(e) => dispatch({type: 'setShowFretsBeforeCapo', value: stringToBool(e.target.value)})}
