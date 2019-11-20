@@ -12,7 +12,7 @@ import { notes } from 'util/music';
  * - mode: string = 'note'      (passed down from String component, whether to display music note or position)
  * - forceMute: bool = false    (mutes fret and hides note)
  */
-export default (props) => {
+const Fret = (props) => {
   const { state, dispatch } = useContext(ReducerCtx);
   const {
     findScale,
@@ -83,3 +83,5 @@ export default (props) => {
     </div>
   );
 };
+
+export default Fret;

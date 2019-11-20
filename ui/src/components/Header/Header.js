@@ -17,7 +17,7 @@ import { IoIosSettings, IoIosSearch } from 'react-icons/io';
  * Header
  * 
  */
-export default (props) => {
+const Header = (props) => {
   const {state, dispatch} = useContext(ReducerCtx);
   const {
     findScale,
@@ -150,3 +150,5 @@ export default (props) => {
     </React.Fragment>
   );
 };
+
+export default Header;

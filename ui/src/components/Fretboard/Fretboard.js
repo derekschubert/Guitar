@@ -8,7 +8,7 @@ import String from 'components/String';
  * Fretboard
  *
  */
-export default () => {
+const Fretboard = () => {
   const {state} = useContext(ReducerCtx);
   const {
     tuning,
@@ -26,3 +26,5 @@ export default () => {
     </div>
   );
 };
+
+export default Fretboard;

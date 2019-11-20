@@ -11,7 +11,7 @@ import Fret from 'components/Fret';
  * - openNote: int*         (index of note in notes array)
  * - mode: string = 'note' (note / position - either display frets & their associated notes, or display fret position)
  */
-export default (props) => {
+const String = (props) => {
   const {state} = useContext(ReducerCtx);
   const {
     frets,
@@ -53,3 +53,5 @@ export default (props) => {
     </div>
   );
 };
+
+export default String;

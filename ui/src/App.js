@@ -16,7 +16,6 @@ import config from './auth_config.json';
 import { history } from 'components/Router';
 
 const App = () => {
-
   // Routes user to correct location after login
   const onRedirectCallback = appState => {
     history.replace(appState && appState.targetUrl ? appState.targetUrl : '/');
