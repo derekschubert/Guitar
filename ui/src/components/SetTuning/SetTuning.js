@@ -1,6 +1,7 @@
-import React, { useState, } from 'react';
+import React, { useState, useContext, useEffect, } from 'react';
 import './SetTuning.css';
 import { displayTuning, } from 'util/music';
+import ReducerCtx from 'contexts/reducer';
 
 // Components
 import { IoIosArrowForward } from 'react-icons/io';
@@ -9,7 +10,35 @@ import {
 } from 'components/Input';
 
 const SetTuning = ({ value, onChange, style }) => {
+  const { state, dispatch } = useContext(ReducerCtx);
+  const {
+    tuning,
+    tunings,
+  } = state;
   const [showDiv, setShowDiv] = useState(false);
+  const [useCreateNew, setUseCreateNew] = useState(false);
+  const [createName, setCreateName] = useState("");
+  const [saveCreateNew, setSaveCreateNew] = useState(false);
+
+  // Tuning Input Controls
+  const [fullTuning, setFullTuning] = useState(tuning);
+  useEffect(() => {
+    setFullTuning(tuning);
+  }, [tuning]);
+
+  const setTuningHandler = () => {
+    const newTuning = fullTuning.map(t => parseInt(t));
+
+    if (saveCreateNew) {
+      dispatch({ type: 'setAndSaveTuning', tuning: newTuning, name: createName });
+    } else {
+      dispatch({ type: 'setTuning', tuning: newTuning });
+    }
+    setShowDiv(false);
+    setUseCreateNew(false);
+  };
+  // End Tuning Input Controls
+
 
   const Option = ({ tuning, name }) => {
     const [toggle, setToggle] = useState(true);
@@ -33,9 +62,6 @@ const SetTuning = ({ value, onChange, style }) => {
     );
   };
 
-  const [useCreateNew, setUseCreateNew] = useState(false);
-  const [createName, setCreateName] = useState("");
-  const [saveCreateNew, setSaveCreateNew] = useState(false);
   return (
     <div className='TuningQuickSetting' style={style}>
       <button onClick={() => setShowDiv(!showDiv)}>{value}</button>
@@ -47,7 +73,10 @@ const SetTuning = ({ value, onChange, style }) => {
                 label='Tuning'
                 position='top'
               >
-                <TuningInput />
+                <TuningInput 
+                  fullTuning={fullTuning} 
+                  setFullTuning={setFullTuning} 
+                />
               </WithLabel>
               <WithLabel name='create-new-save'
                 label='Save tuning?'
@@ -68,9 +97,7 @@ const SetTuning = ({ value, onChange, style }) => {
               </WithLabel>
             </div>
             <div className='options'>
-              {/* TODO: pull from state/api */}
-              <Option tuning={[4, 9, 2, 7, 11, 4]} name={'Standard'} />
-              <Option tuning={[2, 9, 4, 9, 1, 4]} name={'A Passing Feeling'} />
+              {tunings.map((t, i) => <Option key={i} tuning={t.tuning} name={t.name} />)}
             </div>
           </div>
         </div>
@@ -80,7 +107,9 @@ const SetTuning = ({ value, onChange, style }) => {
           >
             {useCreateNew ? 'Cancel' : 'Create New'}
           </button>
-          <button className='btn-half'>
+          <button className='btn-half'
+            onClick={setTuningHandler}
+          >
             {saveCreateNew ? 'Save' : 'Set'}
           </button>
         </div>

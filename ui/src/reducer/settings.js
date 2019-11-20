@@ -73,10 +73,19 @@ const setFoundScale = (state, scale) => {
   }
 };
 
+const setAndSaveTuning = (state, tuning, name) => {
+  return {
+    ...state,
+    tuning,
+    tunings: [...state.tunings, {tuning, name}],
+  };
+}
+
 export {
   setCapo,
   setFrets,
   setScaleNotes,
   setFindScale,
   setFoundScale,
+  setAndSaveTuning,
 };

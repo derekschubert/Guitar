@@ -5,10 +5,11 @@ import './TuningInput.css';
 // TODO: add comments
 const TuningInput = (props) => {
   const {
-    name,  
+    name,
+    fullTuning,
+    setFullTuning,  
   } = props;
 
-  const [fullTuning, setFullTuning] = useState([2, 9, 4, 9, 1, 4]);
   const setTuning = (newNote, index) => {
     let newTuning = [...fullTuning];
     newTuning[index] = newNote;

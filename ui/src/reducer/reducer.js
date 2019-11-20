@@ -1,6 +1,6 @@
 import { useReducer } from 'react';
 import { setCapo, setFrets, setScaleNotes, 
-  setFindScale, setFoundScale,
+  setFindScale, setFoundScale, setAndSaveTuning,
 } from './settings';
 import { saveState } from 'reducer/storage';
 
@@ -8,6 +8,7 @@ const initialState = {
   capo: 0,
   frets: 12,
   tuning: [2, 9, 4, 9, 1, 4],
+  tunings: [{name: 'Standard', tuning: [4, 9, 2, 7, 11, 4]}, {name: 'A Passing Feeling', tuning: [2, 9, 4, 9, 1, 4]}],
   strings: 6,
   showFretsBeforeCapo: true,
   showFretCountAbove: true,
@@ -25,6 +26,8 @@ const reducer = (state, action) => {
     setCapo: () => setCapo(state, action.capo),
 
     setTuning: () => ({...state, tuning: action.tuning}),
+
+    setAndSaveTuning: () => setAndSaveTuning(state, action.tuning, action.name),
 
     setStrings: () => ({...state, strings: action.strings}),
 
