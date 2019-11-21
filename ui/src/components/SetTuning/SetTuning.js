@@ -15,6 +15,7 @@ const SetTuning = ({ value, onChange, style }) => {
     tuning,
     tunings,
   } = state;
+
   const [showDiv, setShowDiv] = useState(false);
   const [useCreateNew, setUseCreateNew] = useState(false);
   const [createName, setCreateName] = useState("");
@@ -39,7 +40,7 @@ const SetTuning = ({ value, onChange, style }) => {
   };
   // End Tuning Input Controls
 
-
+  // Available / Saved Tuning inside Tuning List
   const Option = ({ tuning, name }) => {
     const [toggle, setToggle] = useState(true);
     const tuningText = displayTuning(tuning);
